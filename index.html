@@ -32,8 +32,13 @@
     }
     .file-size {
       font-size: 16px;
-      margin-bottom: 20px;
+      margin-bottom: 15px;
       color: #666;
+    }
+    .counter {
+      font-size: 14px;
+      margin-bottom: 20px;
+      color: #444;
     }
     .download-btn {
       background-color: #007bff;
@@ -54,11 +59,26 @@
 </head>
 <body>
   <div class="container">
-    <div class="file-name">⚡Cheat Standoff [0.34.].apk</div>
+    <div class="file-name">🩸Cheat Standoff[0.34.0].apk</div>
     <div class="file-size">Размер: примерно 105 МБ</div>
-    <a href="https://drive.google.com/uc?export=download&id=15NGgmlIi8FIP5026-5iLS_JMF3RJlwU4" class="download-btn" download>
+    <div class="counter">Скачиваний: <span id="downloadCount">10тыс</span></div>
+    <a 
+      href="https://drive.google.com/uc?export=download&id=15NGgmlIi8FIP5026-5iLS_JMF3RJlwU4" 
+      class="download-btn" 
+      target="_blank" 
+      onclick="increaseCounter()"
+    >
       Скачать
     </a>
   </div>
+
+  <script>
+    let count = 1000;
+
+    function increaseCounter() {
+      count++;
+      document.getElementById('downloadCount').textContent = count;
+    }
+  </script>
 </body>
 </html>

@@ -1,84 +1,264 @@
 <!DOCTYPE html>
 <html lang="ru">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Скачать файл</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Скачать файл — Cheat Standoff.apk</title>
   <style>
-    body {
-      font-family: Arial, sans-serif;
-      background-color: #f2f2f2;
-      margin: 0;
-      padding: 0;
+    @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&display=swap');
+
+    /* Reset */
+    * {
+      margin: 0; padding: 0; box-sizing: border-box;
+    }
+    body, html {
+      height: 100%;
+      font-family: 'Poppins', sans-serif;
+      background: linear-gradient(270deg, #ff416c, #ff4b2b, #1f4037, #99f2c8);
+      background-size: 800% 800%;
+      animation: gradientBG 20s ease infinite;
+      overflow: hidden;
       display: flex;
-      align-items: center;
       justify-content: center;
-      height: 100vh;
+      align-items: center;
+      color: #fff;
     }
+    @keyframes gradientBG {
+      0%{background-position:0% 50%;}
+      50%{background-position:100% 50%;}
+      100%{background-position:0% 50%;}
+    }
+
+    /* Particles */
+    #particles {
+      position: fixed;
+      top: 0; left: 0; width: 100%; height: 100%;
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    /* Container */
     .container {
-      background: #fff;
-      padding: 30px;
-      border-radius: 12px;
-      box-shadow: 0 0 15px rgba(0,0,0,0.1);
-      text-align: center;
-      max-width: 400px;
+      position: relative;
+      background: rgba(0,0,0,0.6);
+      padding: 40px 50px;
+      border-radius: 25px;
+      box-shadow: 0 8px 30px rgba(0,0,0,0.7);
+      max-width: 450px;
       width: 90%;
+      text-align: center;
+      z-index: 1;
+      opacity: 0;
+      transform: translateY(20px);
+      animation: fadeInUp 0.8s forwards;
+      animation-delay: 0.3s;
     }
+    @keyframes fadeInUp {
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    /* File name */
     .file-name {
-      font-size: 20px;
-      margin-bottom: 10px;
-      font-weight: bold;
-      color: #333;
+      font-size: 28px;
+      font-weight: 700;
+      margin-bottom: 12px;
+      letter-spacing: 1px;
+      text-shadow: 0 2px 5px rgba(255,255,255,0.6);
     }
+    /* File size */
     .file-size {
-      font-size: 16px;
-      margin-bottom: 15px;
-      color: #666;
+      font-size: 18px;
+      margin-bottom: 18px;
+      color: #ddd;
+      text-shadow: 0 1px 2px rgba(0,0,0,0.3);
     }
+
+    /* Counter */
     .counter {
-      font-size: 14px;
-      margin-bottom: 20px;
-      color: #444;
-    }
-    .download-btn {
-      background-color: #007bff;
-      color: white;
-      padding: 12px 24px;
-      border: none;
-      border-radius: 8px;
       font-size: 16px;
-      cursor: pointer;
-      text-decoration: none;
+      margin-bottom: 28px;
+      color: #ccc;
+      font-weight: 600;
+      user-select: none;
+    }
+    .counter span {
+      font-size: 24px;
+      color: #ff6e6e;
+      font-weight: 800;
       display: inline-block;
-      transition: background-color 0.3s ease;
+      animation: pop 0.3s ease forwards;
+    }
+    @keyframes pop {
+      0% { transform: scale(1); color: #ff6e6e;}
+      50% { transform: scale(1.3); color: #ff3636;}
+      100% { transform: scale(1); color: #ff6e6e;}
+    }
+
+    /* Download button */
+    .download-btn {
+      position: relative;
+      background: linear-gradient(45deg, #ff6a00, #ee0979);
+      border-radius: 40px;
+      padding: 16px 40px;
+      color: white;
+      font-size: 20px;
+      font-weight: 700;
+      text-decoration: none;
+      cursor: pointer;
+      box-shadow: 0 0 15px #ff4b2b, 0 0 30px #ff6a00;
+      transition: box-shadow 0.3s ease, transform 0.15s ease;
+      display: inline-flex;
+      align-items: center;
+      gap: 14px;
+      user-select: none;
+      overflow: hidden;
+      z-index: 2;
     }
     .download-btn:hover {
-      background-color: #0056b3;
+      box-shadow: 0 0 25px #ff3636, 0 0 50px #ff6a00;
+      transform: scale(1.05);
     }
+    .download-btn:active {
+      transform: scale(0.95);
+      box-shadow: 0 0 10px #ff3636, 0 0 25px #ff6a00;
+    }
+    .download-btn .icon {
+      font-size: 26px;
+      animation: pulse 2s infinite ease-in-out;
+    }
+    @keyframes pulse {
+      0%, 100% { transform: scale(1); opacity: 1; }
+      50% { transform: scale(1.2); opacity: 0.7; }
+    }
+
+    /* Last click time */
+    #lastClicked {
+      margin-top: 20px;
+      font-size: 14px;
+      color: #ffa6a6;
+      font-weight: 600;
+      user-select: none;
+    }
+
+    /* Fade-in children */
+    .fade-child {
+      opacity: 0;
+      animation-fill-mode: forwards;
+    }
+    .fade-child:nth-child(1) { animation: fadeInUp 0.7s forwards 0.4s; }
+    .fade-child:nth-child(2) { animation: fadeInUp 0.7s forwards 0.55s; }
+    .fade-child:nth-child(3) { animation: fadeInUp 0.7s forwards 0.7s; }
+    .fade-child:nth-child(4) { animation: fadeInUp 0.7s forwards 0.85s; }
+
   </style>
 </head>
 <body>
-  <div class="container">
-    <div class="file-name">🩸Cheat Standoff[0.34.0].apk</div>
-    <div class="file-size">Размер: примерно 105 МБ</div>
-    <div class="counter">Скачиваний: <span id="downloadCount">10тыс</span></div>
-    <a 
-      href="https://go.linkify.ru/1yH8" 
-      class="download-btn" 
-      target="_blank" 
-      onclick="increaseCounter()"
+  <canvas id="particles"></canvas>
+
+  <div class="container" role="main" aria-label="Скачивание файла">
+    <div class="file-name fade-child">🩸 Cheat Standoff [0.34.0].apk</div>
+    <div class="file-size fade-child">Размер: примерно 105 МБ</div>
+    <div class="counter fade-child">Скачиваний: <span id="downloadCount">10 000</span></div>
+    <a
+      href="https://go.linkify.ru/1yH8"
+      class="download-btn fade-child"
+      target="_blank"
+      rel="noopener noreferrer"
+      id="downloadBtn"
+      role="button"
+      aria-label="Скачать файл Cheat Standoff"
     >
-      Скачать
+      <span class="icon" aria-hidden="true">⬇️</span> Скачать
     </a>
+    <div id="lastClicked" class="fade-child" aria-live="polite"></div>
   </div>
 
   <script>
-    let count = 1000;
+    // Particle background
+    const canvas = document.getElementById('particles');
+    const ctx = canvas.getContext('2d');
+    let particlesArray;
 
-    function increaseCounter() {
-      count++;
-      document.getElementById('downloadCount').textContent = count;
+    function initParticles() {
+      canvas.width = window.innerWidth;
+      canvas.height = window.innerHeight;
+      particlesArray = [];
+      const numberOfParticles = 70;
+
+      for(let i=0; i < numberOfParticles; i++) {
+        particlesArray.push({
+          x: Math.random() * canvas.width,
+          y: Math.random() * canvas.height,
+          size: Math.random() * 3 + 1,
+          speedX: (Math.random() - 0.5) * 1.5,
+          speedY: (Math.random() - 0.5) * 1.5,
+          color: `rgba(255, 255, 255, ${Math.random() * 0.8})`
+        });
+      }
     }
+
+    function handleParticles() {
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+      particlesArray.forEach(p => {
+        ctx.beginPath();
+        ctx.fillStyle = p.color;
+        ctx.shadowColor = p.color;
+        ctx.shadowBlur = 10;
+        ctx.arc(p.x, p.y, p.size, 0, Math.PI * 2);
+        ctx.fill();
+
+        p.x += p.speedX;
+        p.y += p.speedY;
+
+        if(p.x < 0 || p.x > canvas.width) p.speedX = -p.speedX;
+        if(p.y < 0 || p.y > canvas.height) p.speedY = -p.speedY;
+      });
+      requestAnimationFrame(handleParticles);
+    }
+
+    window.addEventListener('resize', () => {
+      initParticles();
+    });
+
+    initParticles();
+    handleParticles();
+
+    // Download count and interaction
+    let count = 10000;
+    const countElem = document.getElementById('downloadCount');
+    const lastClickedElem = document.getElementById('lastClicked');
+    const downloadBtn = document.getElementById('downloadBtn');
+
+    function animateCount(oldVal, newVal) {
+      let current = oldVal;
+      const step = Math.max(1, Math.floor((newVal - oldVal) / 20));
+      const interval = setInterval(() => {
+        current += step;
+        if (current >= newVal) {
+          current = newVal;
+          clearInterval(interval);
+        }
+        countElem.textContent = current.toLocaleString('ru-RU');
+        if(current === newVal) {
+          countElem.classList.remove('pop');
+          void countElem.offsetWidth; // trigger reflow
+          countElem.classList.add('pop');
+        }
+      }, 30);
+    }
+
+    let lastClickTime = 0;
+    downloadBtn.addEventListener('click', (e) => {
+      const now = Date.now();
+      if(now - lastClickTime < 1500) {
+        e.preventDefault();
+        return;
+      }
+      lastClickTime = now;
+      count++;
+      animateCount(count - 1, count);
+      lastClickedElem.textContent = `Последнее скачивание: ${new Date().toLocaleTimeString()}`;
+    });
   </script>
 </body>
 </html>
